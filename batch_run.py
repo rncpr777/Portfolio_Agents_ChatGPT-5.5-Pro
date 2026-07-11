@@ -60,7 +60,9 @@ GROUP_DISPLAY_NAMES = [
     "100000, medium risk",
 ]
 
-OUTPUT_CSV = "results.csv"
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(ROOT_DIR, "output")
+OUTPUT_CSV = os.path.join(ROOT_DIR, "results.csv")
 # -----------------------------------------
 
 
@@ -81,12 +83,12 @@ def run_once(group):
     ]) + "\n"
 
     result = subprocess.run(
-        ["py", "-3.10", "-m", "Portfolio_Agents"],
+        ["py", "-3.10", "-m", "portfolio_agents"],
         input=inputs,
         capture_output=True,
         text=True,
         encoding="utf-8",
-        cwd=r"C:\Xlam\Study\Research_2026\Agents_GPT4o\Portfolio_Agents_ChatGPT-4o",
+        cwd=ROOT_DIR,
         env={**os.environ, "PYTHONIOENCODING": "utf-8"},
     )
 
@@ -157,7 +159,7 @@ def extract_to_csv(folders_by_group):
 
 
 def main():
-    if not os.path.isdir("Portfolio_Agents"):
+    if not os.path.isdir("portfolio_agents"):
         print("ERROR: Run this script from the project root (where portfolio_agents/ folder is).")
         sys.exit(1)
 
