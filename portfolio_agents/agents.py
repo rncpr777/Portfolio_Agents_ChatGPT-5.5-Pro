@@ -35,7 +35,7 @@ class PortfolioGenerationState(TypedDict, total=False):
     step: Optional[str]
 
 #LLM and tool initialization
-llm = ChatOpenAI(model="gpt-5.5-pro", max_retries=2)
+llm = ChatOpenAI(model="gpt-5.5-pro-2026-04-23", max_retries=2)
 tavily_tool = TavilySearchResults(max_results=3) if TAVILY_API_KEY else None
 
 #Node: Parse User Request
